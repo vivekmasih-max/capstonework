@@ -1,0 +1,64 @@
+1)import matplotlib.pyplot as plt
+import pandas as pd
+
+df = pd.read_csv('C:/SEMESTER4/PROJECTWORK/BUDDYFLYDATA.csv')
+df = df.head(10)
+plt.plot(df['YEARS OF RUNNING'],df['Fuel_Capacity(in 1000s)'] ,marker='o', linestyle='dashed', label='Line from CSV')
+plt.xlabel('YEARS OF RUNNING')
+plt.ylabel('Fuel_Capacity(in 1000s)')
+plt.title('Simple Line Graph')
+plt.legend()
+plt.show()
+
+2)import matplotlib.pyplot as plt
+import pandas as pd
+
+df = pd.read_csv('C:/SEMESTER4/PROJECTWORK/BUDDYFLYDATA.csv')
+df.columns = df.columns.str.strip()
+
+plt.bar(df['Types_of_AirCraft'].astype(str), df['Yearly Revenue(IN MILLIONS)'], label='Yearly Revenue')
+plt.xlabel('Types of AirCraft')
+plt.ylabel('Yearly Revenue(IN MILLIONS)')
+plt.title('Yearly Revenue by Aircraft Type')
+plt.show()
+
+
+
+3)import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+
+df = pd.read_csv('C:/SEMESTER4/PROJECTWORK/BUDDYFLYDATA.csv')
+
+sns.relplot(data=df, x=df['Captain Age'],y=df['Flight_Hours'], color="purple")
+plt.title('Age of Pilot by Aircraft Flying Duration')
+plt.show()
+
+
+4)import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+
+df = pd.read_csv('C:/SEMESTER4/PROJECTWORK/BUDDYFLYDATA.csv')
+
+#df = df.head(60)
+sns.swarmplot(data=df,x='Category',y='Pricing')
+plt.title('SwarmPlot')
+plt.show()
+
+
+5)import matplotlib.pyplot as plt
+import pandas as pd
+
+df = pd.read_csv('C:/SEMESTER4/PROJECTWORK/BUDDYFLYDATA.csv')
+Data=df['Types_of_AirCraft'].value_counts()
+plt.pie(Data,labels=Data.index,autopct='%1.1f%%', shadow=True)
+plt.title('Aircraft Distribution')
+plt.axis('equal')
+plt.show()
+
+
+
+
+
+
