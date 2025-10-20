@@ -18,7 +18,9 @@ df.to_csv('BUDDYFLYDATA_CLEANED.csv', index=False)
 
 files.download('BUDDYFLYDATA_CLEANED.csv')
 
-3)def categorize(AIRCRAFT):
+3)df["Types_of_AirCraft"] = df["Types_of_AirCraft"].str.lower()
+
+4)def categorize(AIRCRAFT):
     # Handle missing or non-string values
     if not isinstance(AIRCRAFT, str) or len(AIRCRAFT) == 0:
         return "UNKNOWN"
@@ -31,7 +33,6 @@ files.download('BUDDYFLYDATA_CLEANED.csv')
 
 df["Category"] = df["AIRCRAFT"].apply(categorize)
 
-4)df["Types_of_AirCraft"] = df["Types_of_AirCraft"].str.lower()
-
 5)df['Departure Date'] = pd.to_datetime(df['Departure Date'], format='%m/%d/%Y').dt.strftime('%d/%m/%Y')
+
 df['Departure Date'] = pd.to_datetime(df['Departure Date'], format='%m/%d/%Y').dt.strftime('%Y/%m/%d')
