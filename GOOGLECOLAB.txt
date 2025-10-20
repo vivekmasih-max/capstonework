@@ -1,0 +1,37 @@
+from google.colab import files
+uploaded = files.upload()
+
+1)import pandas as pd
+df = pd.read_csv('BUDDYFLYDATA.csv')
+
+df.drop_duplicates(inplace=True)#remove all duplicates from the original Data
+df.to_csv('BUDDYFLYDATA_CLEANED.csv', index=False)
+
+files.download('BUDDYFLYDATA_CLEANED.csv')
+
+
+2)import pandas as pd
+df = pd.read_csv('BUDDYFLYDATA.csv')
+
+df["Fuel_Capacity(litres)"].fillna(df["Fuel_Capacity(litres)"].mean())#prevents an index column from being added
+df.to_csv('BUDDYFLYDATA_CLEANED.csv', index=False)
+
+files.download('BUDDYFLYDATA_CLEANED.csv')
+
+3)def categorize(AIRCRAFT):
+    # Handle missing or non-string values
+    if not isinstance(AIRCRAFT, str) or len(AIRCRAFT) == 0:
+        return "UNKNOWN"
+    
+    first_char = AIRCRAFT[0].upper()
+    if 'G' <= first_char <= 'S':
+        return "DOMESTIC"
+    else:
+        return "INTERNATIONAL"
+
+df["Category"] = df["AIRCRAFT"].apply(categorize)
+
+4)df["Types_of_AirCraft"] = df["Types_of_AirCraft"].str.lower()
+
+5)df['Departure Date'] = pd.to_datetime(df['Departure Date'], format='%m/%d/%Y').dt.strftime('%d/%m/%Y')
+df['Departure Date'] = pd.to_datetime(df['Departure Date'], format='%m/%d/%Y').dt.strftime('%Y/%m/%d')
